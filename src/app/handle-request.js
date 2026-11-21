@@ -10,15 +10,11 @@
 
 import { handleDockerAuth } from '../protocols/docker.js';
 import { finalizeResponse } from '../response/finalize-response.js';
-import {
-  createHomepageRedirect,
-  normalizeEffectivePath,
-  resolveTarget
-} from '../routing/resolve-target.js';
+import { normalizeEffectivePath, resolveTarget } from '../routing/resolve-target.js';
 import { getDefaultCache, tryReadCachedResponse } from '../upstream/cache.js';
 import { resolveCachePolicy } from '../upstream/cache-policy.js';
 import { fetchUpstreamResponse } from '../upstream/fetch-upstream.js';
-import { PerformanceMonitor, addPerformanceHeaders } from '../utils/performance.js';
+import { addPerformanceHeaders, PerformanceMonitor } from '../utils/performance.js';
 import { addCorsHeaders, addSecurityHeaders, createErrorResponse } from '../utils/security.js';
 import { getAllowedMethods, isProtocolRequest, validateRequest } from '../utils/validation.js';
 import { createRequestContext } from './request-context.js';
@@ -68,10 +64,6 @@ export async function handleRequest(request, env, ctx) {
       });
       addSecurityHeaders(headers);
       response = new Response('{}', { status: 200, headers });
-    }
-    // Redirect root path or invalid platforms to GitHub repository
-    else if (url.pathname === '/' || url.pathname === '') {
-      response = createHomepageRedirect();
     } else {
       const validation = validateRequest(request, url, config, requestContext);
       if (!validation.valid) {

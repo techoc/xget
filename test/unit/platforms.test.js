@@ -122,9 +122,9 @@ describe('Platform Configuration', () => {
     });
 
     it('should transform PyPI files paths correctly', () => {
-      expect(
-        transformPath('/pypi/files/packages/source/r/requests/requests-2.31.0.tar.gz', 'pypi-files')
-      ).toBe('/packages/source/r/requests/requests-2.31.0.tar.gz');
+      expect(transformPath('/pypi/packages/source/r/requests/requests-2.31.0.tar.gz', 'pypi')).toBe(
+        '/packages/source/r/requests/requests-2.31.0.tar.gz'
+      );
     });
 
     it('should transform conda default channel paths correctly', () => {
@@ -134,9 +134,9 @@ describe('Platform Configuration', () => {
     });
 
     it('should transform conda community channel paths correctly', () => {
-      expect(
-        transformPath('/conda/community/conda-forge/linux-64/repodata.json', 'conda-community')
-      ).toBe('/conda-forge/linux-64/repodata.json');
+      expect(transformPath('/conda/conda-forge/linux-64/repodata.json', 'conda')).toBe(
+        '/conda-forge/linux-64/repodata.json'
+      );
     });
 
     it('should transform Flathub paths correctly', () => {
@@ -207,13 +207,12 @@ describe('Platform Configuration', () => {
       expect(PLATFORMS.pypi).toBe('https://pypi.org');
     });
 
-    it('should have correct PyPI files base URL', () => {
-      expect(PLATFORMS['pypi-files']).toBe('https://files.pythonhosted.org');
+    it('should not have pypi-files platform (merged into pypi)', () => {
+      expect(PLATFORMS).not.toHaveProperty('pypi-files');
     });
 
-    it('should have correct conda base URLs', () => {
-      expect(PLATFORMS.conda).toBe('https://repo.anaconda.com');
-      expect(PLATFORMS['conda-community']).toBe('https://conda.anaconda.org');
+    it('should not have conda-community platform (merged into conda)', () => {
+      expect(PLATFORMS).not.toHaveProperty('conda-community');
     });
 
     it('should have correct Flathub base URL', () => {

@@ -5,6 +5,10 @@ compatibility_date = "2024-10-22"
 compatibility_flags = ["nodejs_compat"]
 workers_dev = false
 
+[assets]
+directory = "static"
+not_found_handling = "single-page-application"
+
 [placement]
 mode = "smart"
 
