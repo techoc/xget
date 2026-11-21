@@ -38,12 +38,16 @@ jobs:
           mkdir -p /tmp/pages-conversion
           cp -r adapters/pages/* /tmp/pages-conversion/
 
-      - name: Copy source code files
+      - name: Copy source code and static assets
         run: |
           cp -r src /tmp/pages-conversion/
+          cp -r static/. /tmp/pages-conversion/
           cp package.json /tmp/pages-conversion/
           cp package-lock.json /tmp/pages-conversion/ 2>/dev/null || true
           cp LICENSE /tmp/pages-conversion/
+
+          test -f /tmp/pages-conversion/index.html
+          test -f /tmp/pages-conversion/style.css
 
       - name: Rewrite Pages adapter imports for converted layout
         run: |
