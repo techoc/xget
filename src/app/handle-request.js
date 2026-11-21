@@ -38,8 +38,9 @@ export async function handleRequest(request, env, ctx) {
     url.pathname.startsWith('/style.css') ||
     url.pathname.startsWith('/Xget.')
   ) {
-    if (env.ASSETS) {
-      return env.ASSETS.fetch(request);
+    const assets = /** @type {{ fetch(request: Request): Promise<Response> }} */ (env.ASSETS);
+    if (assets) {
+      return assets.fetch(request);
     }
   }
 
