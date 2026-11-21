@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+
+  <title>Xget URL 轉換器 - 面向 GitHub、npm、Docker 等的高速 URL 轉換</title>
+  <meta
+    content="Xget URL 轉換器 - 面向 GitHub、npm、Docker 等的高速 URL 轉換"
+    name="title"
+  />
+  <meta
+    content="立即將 URL 轉換為 Xget 加速格式。支援 GitHub、npm、Docker Hub、Homebrew 等開發者平台。免費、安全、純客戶端處理，無需註冊。"
+    name="description"
+  />
+  <meta
+    content="Xget, URL 轉換器, GitHub 下載加速, npm 鏡像, Docker Hub 鏡像, Homebrew bottles, URL 轉換工具, 下載加速, CDN 加速, 開發者工具, GitHub 原始檔案, 容器映像儲存庫, 套件管理器, 開源工具, 免費 URL 轉換器"
+    name="keywords"
+  />
+  <meta content="Xi Xu" name="author" />
+  <meta content="zh-TW" name="language" />
+  <meta
+    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    name="robots"
+  />
+  <meta content="index, follow" name="googlebot" />
+  <meta content="index, follow" name="bingbot" />
+
+  <meta content="website" property="og:type" />
+  <meta content="https://xuc.xi-xu.me/zh-hant.html" property="og:url" />
+  <meta
+    content="Xget URL 轉換器 - 面向 GitHub、npm、Docker 等的高速 URL 轉換"
+    property="og:title"
+  />
+  <meta
+    content="立即將 URL 轉換為 Xget 加速格式。支援 GitHub、npm、Docker Hub、Homebrew 等開發者平台。免費、安全、純客戶端處理，無需註冊。"
+    property="og:description"
+  />
+  <meta content="https://xuc.xi-xu.me/Xget.png" property="og:image" />
+  <meta content="Xget URL 轉換器標誌" property="og:image:alt" />
+  <meta content="image/png" property="og:image:type" />
+  <meta content="1200" property="og:image:width" />
+  <meta content="630" property="og:image:height" />
+  <meta content="Xget URL 轉換器" property="og:site_name" />
+  <meta content="zh_TW" property="og:locale" />
+
+  <meta content="summary_large_image" property="twitter:card" />
+  <meta content="https://xuc.xi-xu.me/zh-hant.html" property="twitter:url" />
+  <meta
+    content="Xget URL 轉換器 - 面向 GitHub、npm、Docker 等的高速 URL 轉換"
+    property="twitter:title"
+  />
+  <meta
+    content="立即將 URL 轉換為 Xget 加速格式。支援 GitHub、npm、Docker Hub、Homebrew 等開發者平台。免費、安全、純客戶端處理，無需註冊。"
+    property="twitter:description"
+  />
+  <meta content="https://xuc.xi-xu.me/Xget.png" property="twitter:image" />
+  <meta content="Xget URL 轉換器標誌" property="twitter:image:alt" />
+  <meta content="@xixu_me" property="twitter:creator" />
+  <meta content="@xixu_me" property="twitter:site" />
+
+  <meta content="#0052d9" name="theme-color" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="default" name="apple-mobile-web-app-status-bar-style" />
+  <meta content="Xget URL 轉換器" name="apple-mobile-web-app-title" />
+  <meta content="Xget URL 轉換器" name="application-name" />
+  <meta content="#0052d9" name="msapplication-TileColor" />
+  <meta content="Xget.png" name="msapplication-TileImage" />
+  <meta content="Xget.png" name="msapplication-square70x70logo" />
+  <meta content="Xget.png" name="msapplication-square150x150logo" />
+  <meta content="Xget.png" name="msapplication-wide310x150logo" />
+  <meta content="Xget.png" name="msapplication-square310x310logo" />
+
+  <meta
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://cdn.jsdelivr.net; font-src 'self';"
+    http-equiv="Content-Security-Policy"
+  />
+  <meta content="nosniff" http-equiv="X-Content-Type-Options" />
+  <meta content="DENY" http-equiv="X-Frame-Options" />
+  <meta
+    content="strict-origin-when-cross-origin"
+    http-equiv="Referrer-Policy"
+  />
+
+  <link href="https://cdn.jsdelivr.net" rel="dns-prefetch" />
+  <link crossorigin href="https://cdn.jsdelivr.net" rel="preconnect" />
+
+  <link href="https://xuc.xi-xu.me/zh-hant.html" rel="canonical" />
+  <link href="https://xuc.xi-xu.me" hreflang="en" rel="alternate" />
+  <link
+    href="https://xuc.xi-xu.me/zh-hans.html"
+    hreflang="zh-Hans"
+    rel="alternate"
+  />
+  <link
+    href="https://xuc.xi-xu.me/zh-hant.html"
+    hreflang="zh-Hant"
+    rel="alternate"
+  />
+  <link href="https://xuc.xi-xu.me" hreflang="x-default" rel="alternate" />
+
+  <link href="style.css" rel="stylesheet" />
+
+  <link href="Xget.ico" rel="icon" type="image/x-icon" />
+  <link href="Xget.png" rel="icon" sizes="32x32" type="image/png" />
+  <link href="Xget.png" rel="icon" sizes="16x16" type="image/png" />
+  <link href="Xget.png" rel="apple-touch-icon" sizes="180x180" />
+  <link href="Xget.png" rel="apple-touch-icon" sizes="152x152" />
+  <link href="Xget.png" rel="apple-touch-icon" sizes="144x144" />
+  <link href="Xget.png" rel="apple-touch-icon" sizes="120x120" />
+  <link href="Xget.png" rel="apple-touch-icon" sizes="114x114" />
+  <link href="Xget.png" rel="apple-touch-icon" sizes="76x76" />
+  <link href="Xget.png" rel="apple-touch-icon" sizes="72x72" />
+  <link href="Xget.png" rel="apple-touch-icon" sizes="60x60" />
+  <link href="Xget.png" rel="apple-touch-icon" sizes="57x57" />
+  <link href="Xget.ico" rel="shortcut icon" />
+
+  <script id="structured-data-webapp" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Xget URL 轉換器",
+      "description": "立即將 URL 轉換為 Xget 加速格式。支援 GitHub、npm、Docker Hub、Homebrew 等開發者平台。",
+      "url": "https://xuc.xi-xu.me/zh-hant.html",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Xi Xu",
+        "url": "https://xi-xu.me"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Xi Xu",
+        "url": "https://xi-xu.me"
+      },
+      "inLanguage": "zh-Hant",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "softwareVersion": "1.0",
+      "featureList": [
+        "GitHub URL 轉換",
+        "npm URL 轉換",
+        "Docker Hub URL 轉換",
+        "Homebrew URL 轉換",
+        "支援自訂 Xget 實例 URL",
+        "純客戶端處理",
+        "無需註冊",
+        "免費使用"
+      ],
+      "screenshot": "https://xuc.xi-xu.me/Xget.png",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "ratingCount": "1"
+      }
+    }
+  </script>
+
+  <script id="structured-data-breadcrumb" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": "https://xuc.xi-xu.me/zh-hant.html"
+        }
+      ]
+    }
+  </script>
+
+  <script id="structured-data-organization" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Xget",
+      "url": "https://github.com/xixu-me/Xget",
+      "logo": "https://xuc.xi-xu.me/Xget.png",
+      "sameAs": [
+        "https://github.com/xixu-me/Xget"
+      ]
+    }
+  </script>
+</head>
+<body data-page="home" data-static-locale="zh-Hant"><a
+  aria-hidden="true"
+  href="https://xuc.xi-xu.me/cdn-cgi/content?id=BmKqocnuPiGmzm.AMyVyUoOxTsFQa3I11J1rO_4ijlw-1795250499.9985523-1.2.1.1-eqAHpcAyILiOie57D_xpQLZLGMD8ASc.3yt3elNJVHM0TPWUyRMOOfoD.ZKgcTlO" rel="nofollow noopener" style="display: none !important; visibility: hidden !important"></a>
+<div class="container">
+  <div class="modal hidden" id="sponsor-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 data-i18n="shared.modal.title">支持我們</h2>
+        <span class="close-button" id="close-modal">&times;</span>
+      </div>
+      <div class="modal-body">
+        <p data-i18n="shared.modal.description">
+          如果這個工具對你有幫助，歡迎支持我們：
+        </p>
+        <div class="modal-links">
+          <a
+            class="modal-link"
+            href="https://xi-xu.me/#sponsorships"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <span>💖</span>
+            <span data-i18n="shared.modal.sponsor">贊助</span>
+          </a>
+          <a
+            class="modal-link"
+            href="/cdn-cgi/l/email-protection#721b320a1b5f0a075c1f174d010710181711064f2a151706523007011b1c170101523b1c03071b000b">
+            <span>🤝</span>
+            <span data-i18n="shared.modal.partner">與我們合作</span>
+          </a>
+        </div>
+        <div class="modal-footer">
+          <label class="dont-show-again">
+            <input id="dont-show-again" type="checkbox" />
+            <span data-i18n="shared.modal.dontShowAgain">不再顯示</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="header-top">
+      <div
+        class="language-switcher"
+        data-i18n-aria-label="shared.languageLabel"
+        role="group"
+      >
+        <span aria-hidden="true" class="language-switcher-icon">🌐</span>
+        <div class="language-options">
+          <button
+            class="language-option"
+            data-i18n="shared.languages.en"
+            data-locale-option="en"
+            type="button"
+          >
+            English
+          </button>
+          <button
+            class="language-option"
+            data-i18n="shared.languages.zh-Hans"
+            data-locale-option="zh-Hans"
+            type="button"
+          >
+            汉语（简体）
+          </button>
+          <button
+            class="language-option"
+            data-i18n="shared.languages.zh-Hant"
+            data-locale-option="zh-Hant"
+            type="button"
+          >
+            漢語（繁體）
+          </button>
+        </div>
+      </div>
+    </div>
+    <h1 class="title" data-i18n="shared.appName">Xget URL 轉換器</h1>
+    <p class="subtitle" data-i18n="shared.subtitle">
+      將受支援平台的 URL 轉換為 Xget 加速 URL
+    </p>
+  </header>
+
+  <main class="main">
+    <div class="converter-section">
+      <div class="input-group">
+        <label class="label" for="xget-domain">
+          <span data-i18n="home.form.xgetDomainLabel">Xget 實例 URL</span>
+        </label>
+        <input
+          autocomplete="off"
+          class="input"
+          id="xget-domain"
+          placeholder="https://xget.techoc.cn"
+          spellcheck="false"
+          type="url"
+          value="https://xget.techoc.cn"
+        />
+      </div>
+
+      <div class="input-group">
+        <label class="label" for="original-url">
+          <span data-i18n="home.form.originalUrlLabel">原始 URL</span>
+        </label>
+        <input
+          autocomplete="off"
+          class="input"
+          data-i18n-placeholder="home.form.originalUrlPlaceholder"
+          id="original-url"
+          placeholder="貼上來自任意受支援平台的 URL"
+          spellcheck="false"
+          type="url"
+        />
+      </div>
+
+      <div class="platform-status">
+            <span class="platform-indicator">
+              <span class="platform-dot"></span>
+              <span id="platform-name">將自動識別平台</span>
+            </span>
+      </div>
+
+      <div class="result-section hidden" id="result-section">
+        <div class="input-group">
+          <label class="label" for="converted-url">
+                <span data-i18n="home.form.convertedUrlLabel">
+                  轉換後的 URL
+                </span>
+          </label>
+          <div class="output-container">
+            <input
+              class="input output"
+              data-i18n-placeholder="home.form.convertedUrlPlaceholder"
+              id="converted-url"
+              placeholder="轉換後的 URL 將顯示在這裡"
+              readonly
+              type="text"
+            />
+            <button
+              class="copy-btn"
+              data-i18n-aria-label="shared.actions.copyToClipboard"
+              data-i18n-title="shared.actions.copyToClipboard"
+              id="copy-btn"
+              title="複製到剪貼簿"
+            >
+              <span class="copy-icon">📋</span>
+              <span class="copy-text" data-i18n="shared.actions.copy">
+                    複製
+                  </span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="error-message hidden" id="error-message"></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="footer-text">
+        <span data-i18n="shared.footer.poweredByPrefix">由</span>
+        <a
+          class="footer-link"
+          href="https://github.com/xixu-me/Xget"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Xget
+        </a>
+        <span data-i18n="shared.footer.poweredBySuffix">提供支援</span>
+      </p>
+      <p class="footer-links">
+        <a
+          class="footer-link"
+          href="https://xi-xu.me/#sponsorships"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <span>💖</span>
+          <span data-i18n="shared.footer.sponsor">贊助</span>
+        </a>
+        |
+        <a
+          class="footer-link"
+          href="/cdn-cgi/l/email-protection#e881a89081c5909dc6858dd79b9d8a828d8b9cd5b08f8d9cc8aa9d9b81868d9b9bc8a186999d819a91">
+          <span>🤝</span>
+          <span data-i18n="shared.footer.partner">與我們合作</span>
+        </a>
+      </p>
+      <p class="footer-note" data-i18n="shared.footer.platformConfig">
+        平台設定會從 Xget 儲存庫動態載入
+      </p>
+      <p class="footer-copyright">
+        Copyright &copy; <span id="copyright-year">2025</span>
+        <a
+          class="footer-author-link"
+          href="https://xi-xu.me"
+          rel="noopener noreferrer"
+          target="_blank"
+        >Xi Xu</a
+        >.
+        <span data-i18n="shared.footer.rightsReserved">保留所有權利。</span>
+      </p>
+    </div>
+  </footer>
+</div>
+
+<script src="i18n.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
