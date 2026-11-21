@@ -32,6 +32,17 @@ export async function handleRequest(request, env, ctx) {
   const requestContext = createRequestContext(request, env);
   const { config, isCorsPreflight, isDocker, url } = requestContext;
 
+  // Serve static assets for root path and static files
+  if (
+    url.pathname === '/' ||
+    url.pathname.startsWith('/style.css') ||
+    url.pathname.startsWith('/Xget.')
+  ) {
+    if (env.ASSETS) {
+      return env.ASSETS.fetch(request);
+    }
+  }
+
   try {
     if (isCorsPreflight) {
       const requestedMethod = request.headers.get('Access-Control-Request-Method') || '';
