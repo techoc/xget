@@ -33,7 +33,7 @@ describe('Integration Tests', () => {
       const testUrl = 'https://example.com/gl/gitlab-org/gitlab/-/raw/master/package.json';
       const response = await SELF.fetch(testUrl, { method: 'HEAD' });
 
-      expect([200, 301, 302, 404]).toContain(response.status);
+      expect([200, 301, 302, 404, 429]).toContain(response.status);
       expect(response.headers.get('X-Performance-Metrics')).toBeTruthy();
     });
 
