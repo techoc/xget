@@ -100,7 +100,9 @@ describe('Proxy Platform', () => {
     });
 
     it('should handle complex URLs', () => {
-      const encodedUrl = encodeURIComponent('https://github.com/user/repo/releases/download/v1.0/app.tar.gz');
+      const encodedUrl = encodeURIComponent(
+        'https://github.com/user/repo/releases/download/v1.0/app.tar.gz'
+      );
       const url = new URL(`https://xget.example.com/proxy/${encodedUrl}`);
       const result = resolveTarget(url, `/proxy/${encodedUrl}`, PLATFORMS);
 
