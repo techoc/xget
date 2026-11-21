@@ -77,6 +77,50 @@ export function normalizeEffectivePath(url, isDocker) {
  *   targetUrl: string
  * } | { response: Response }} Target metadata or an early redirect response.
  */
+/**
+ * Resolves a proxy platform path to the target URL contained in the path.
+ * @param {string} effectivePath
+ * @param {URL} url
+ * @returns {{ targetUrl: string, cacheTargetUrl: string } | { response: Response }}
+ */
+function resolveProxyTarget(effectivePath, url) {
+  const proxyPrefix = '/proxy/';
+  const encodedTarget = effectivePath.slice(proxyPrefix.length);
+
+  if (!encodedTarget) {
+    return { response: createErrorResponse('proxy target URL is required', 400) };
+  }
+
+  let targetUrl;
+  try {
+    targetUrl = decodeURIComponent(encodedTarget);
+  } catch {
+    return { response: createErrorResponse('invalid proxy target URL encoding', 400) };
+  }
+
+  // Validate the target URL
+  let parsedTarget;
+  try {
+    parsedTarget = new URL(targetUrl);
+  } catch {
+    return { response: createErrorResponse('invalid proxy target URL', 400) };
+  }
+
+  // Only allow HTTP and HTTPS protocols
+  if (parsedTarget.protocol !== 'http:' && parsedTarget.protocol !== 'https:') {
+    return { response: createErrorResponse('proxy only supports http and https protocols', 400) };
+  }
+
+  // Build the final target URL with the original query string
+  const finalTargetUrl = `${parsedTarget.origin}${parsedTarget.pathname}${parsedTarget.search}${url.search}`;
+  const cacheTargetUrl = finalTargetUrl;
+
+  return {
+    targetUrl: finalTargetUrl,
+    cacheTargetUrl
+  };
+}
+
 export function resolveTarget(url, effectivePath, platforms) {
   const platform =
     SORTED_PLATFORMS.find(key => {
@@ -84,8 +128,23 @@ export function resolveTarget(url, effectivePath, platforms) {
       return effectivePath.startsWith(expectedPrefix);
     }) || effectivePath.split('/')[1];
 
-  if (!platform || !platforms[platform]) {
+  if (!platform || !Object.prototype.hasOwnProperty.call(platforms, platform)) {
     return { response: createHomepageRedirect() };
+  }
+
+  // Handle proxy platform specially - the target URL is encoded in the path
+  if (platform === 'proxy') {
+    const proxyResult = resolveProxyTarget(effectivePath, url);
+    if ('response' in proxyResult) {
+      return proxyResult;
+    }
+    return {
+      cacheTargetUrl: proxyResult.cacheTargetUrl,
+      platform: 'proxy',
+      shouldVaryCacheByOrigin: false,
+      targetPath: '',
+      targetUrl: proxyResult.targetUrl
+    };
   }
 
   const platformPath = `/${platform.replace(/-/g, '/')}`;

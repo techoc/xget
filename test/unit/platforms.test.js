@@ -28,9 +28,12 @@ describe('Platform Configuration', () => {
     });
 
     it('should have valid base URLs for all platforms', () => {
-      Object.values(PLATFORMS).forEach(baseUrl => {
+      Object.entries(PLATFORMS).forEach(([key, baseUrl]) => {
         expect(baseUrl).toBeDefined();
-        expect(baseUrl).toMatch(/^https?:\/\/.+/);
+        // Proxy platform is special - it doesn't have a fixed base URL
+        if (key !== 'proxy') {
+          expect(baseUrl).toMatch(/^https?:\/\/.+/);
+        }
       });
     });
 
@@ -263,6 +266,10 @@ describe('Platform Configuration', () => {
   describe('URL Construction', () => {
     it('should construct valid URLs for all platforms', () => {
       Object.entries(PLATFORMS).forEach(([key, baseUrl]) => {
+        // Proxy platform is special - it doesn't have a fixed base URL
+        if (key === 'proxy') {
+          return;
+        }
         const testPath = `/${key.replace('-', '/')}/test/path`;
         const transformedPath = transformPath(testPath, key);
         const fullUrl = baseUrl + transformedPath;

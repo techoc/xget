@@ -67,6 +67,9 @@ export const PLATFORM_CATALOG = {
   fdroid: 'https://f-droid.org',
   jenkins: 'https://updates.jenkins.io',
 
+  // Generic Proxy
+  proxy: '',
+
   // AI Inference Providers
   'ip-openai': 'https://api.openai.com',
   'ip-anthropic': 'https://api.anthropic.com',
