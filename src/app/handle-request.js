@@ -19,6 +19,9 @@ import { addCorsHeaders, addSecurityHeaders, createErrorResponse } from '../util
 import { getAllowedMethods, isProtocolRequest, validateRequest } from '../utils/validation.js';
 import { createRequestContext } from './request-context.js';
 
+const STATIC_FILE_PATTERN = /^\/[^/]+\.(?:css|html?|ico|js|json|map|png|svg|txt|webmanifest|xml)$/i;
+const STATIC_PAGE_PATHS = new Set(['/index', '/zh-hans', '/zh-hant']);
+
 /**
  * Main request handler with comprehensive caching, retry logic, and security measures.
  * @param {Request} request - The incoming HTTP request
@@ -32,11 +35,11 @@ export async function handleRequest(request, env, ctx) {
   const requestContext = createRequestContext(request, env);
   const { config, isCorsPreflight, isDocker, url } = requestContext;
 
-  // Serve static assets for root path and static files
+  // Serve static assets for the root path and root-level static files
   if (
     url.pathname === '/' ||
-    url.pathname.startsWith('/style.css') ||
-    url.pathname.startsWith('/Xget.')
+    STATIC_PAGE_PATHS.has(url.pathname) ||
+    STATIC_FILE_PATTERN.test(url.pathname)
   ) {
     const assets = /** @type {{ fetch(request: Request): Promise<Response> }} */ (env.ASSETS);
     if (assets) {

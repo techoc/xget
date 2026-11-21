@@ -11,6 +11,28 @@ describe('Xget Core Functionality', () => {
       expect(content).toContain('html');
     });
 
+    it('should serve static site scripts', async () => {
+      const i18nResponse = await SELF.fetch('https://example.com/i18n.js');
+      expect(i18nResponse.status).toBe(200);
+      expect(i18nResponse.headers.get('Content-Type')).toContain('javascript');
+      expect(await i18nResponse.text()).toContain('XgetI18n');
+
+      const scriptResponse = await SELF.fetch('https://example.com/script.js');
+      expect(scriptResponse.status).toBe(200);
+      expect(scriptResponse.headers.get('Content-Type')).toContain('javascript');
+      expect(await scriptResponse.text()).toContain('DOMContentLoaded');
+    });
+
+    it('should serve localized homepage files', async () => {
+      const simplifiedResponse = await SELF.fetch('https://example.com/zh-hans');
+      expect(simplifiedResponse.status).toBe(200);
+      expect(await simplifiedResponse.text()).toContain('data-static-locale="zh-Hans"');
+
+      const traditionalResponse = await SELF.fetch('https://example.com/zh-hant');
+      expect(traditionalResponse.status).toBe(200);
+      expect(await traditionalResponse.text()).toContain('data-static-locale="zh-Hant"');
+    });
+
     it('should redirect platform prefix without path to homepage', async () => {
       // Test with /gh (no trailing slash)
       const response1 = await SELF.fetch('https://example.com/gh', { redirect: 'manual' });

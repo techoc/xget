@@ -48,6 +48,8 @@ jobs:
 
           test -f /tmp/pages-conversion/index.html
           test -f /tmp/pages-conversion/style.css
+          test -f /tmp/pages-conversion/script.js
+          test -f /tmp/pages-conversion/i18n.js
 
       - name: Rewrite Pages adapter imports for converted layout
         run: |
